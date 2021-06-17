@@ -1,16 +1,22 @@
 import React from 'react'
+import { BrowserRouter,Route,Switch } from 'react-router-dom'
+import CourseIndex from './components/common/Course/CourseIndex'
+import Home from './components/common/Home'
+import Nav from './components/common/Nav'
 
 function App() {
-  React.useEffect(() => {
-    const getData = async () => {
-      const res = await fetch('/api/endpoint') // * <-- replace with your endpoint
-      const data = await res.json()
-      console.log(data)
-    }
-    getData()
-  })
 
-  return <h1>Hello World</h1>
+  return (
+    <>
+      <BrowserRouter>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/courses" component={CourseIndex} />
+        </Switch>
+      </BrowserRouter>
+    </>
+  )
 }
 
 export default App

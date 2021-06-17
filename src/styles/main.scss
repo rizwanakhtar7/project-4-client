@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: 'open sans', sans-serif;
+  font-size: 1rem;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+}
+
+.overflow-text {
+  height: 4.5em; 
+  line-height: 1.5em;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+
+.individual-course-container {
+  border-radius: 0.75rem;
+  margin: .5rem;
+  padding: 1rem;
+  height: auto;
+  font-size: 13px;
+  background: white;
+  color: black;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  max-width: fit-content;
+}
+
+.container-for-courses {
+  max-width: 100%;  
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+}
+
+img {
+  height: 100%;
+  width: 240px;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1em;
+  color: white;
+  height: 70px;
+  z-index: 1;
+  transition-timing-function: ease-in;
+  transition: all 0.8s;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+}
+
+.navbar-show-color {
+  background: grey;
+  color: white;
+
+}
+
+.navbar-default-color {
+  background: black;
+}
+
+
+
+/* Side navbar styling */
+.side-nav-menu-container {
+  width: 250px;
+  color:white;
+  background-color: black;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  right: -100%;
+  //box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;}
+}
+
+.side-nav-menu-container.active {
+  right: 0;
+  transition: all 0.4s;
+}
+
+.navbar-content-container > li {
+  // padding: .5em;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  text-align: left;
+}
+
+.navbar-item  {
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  text-transform: uppercase;
+  a:link {
+    color: white;
+  }
+}
+
+.navbar-item:hover {
+  color: rgb(250, 56, 56);
+}
+
+.navbar-content-container {
+  width: 100%;
+}
+
+// Font awesome icons
+.fa-items-icon {
+  margin-right: 9px;
+  cursor: pointer;
+}
