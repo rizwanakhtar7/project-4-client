@@ -8,6 +8,7 @@ import Nav from './components/common/Nav'
 import Dashboard from './components/common/Dashboard'
 import Quiz from './components/common/Quiz'
 import Register from './components/auth/Register'
+import ImageUpload from './components/common/ImageUpload'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/quiz" component={Quiz} />
           <Route path="/register" component={Register} />
+          <Route path="/upload" component={ImageUpload} />
         </Switch>
       </BrowserRouter>
     </>
