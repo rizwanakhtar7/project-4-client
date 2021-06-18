@@ -8,13 +8,19 @@ function headers() {
   }
 }
 
-
 // * Learn Requests
 
 export function createCourse(formdata) {
-  return axios.post('api/courses/', formdata, headers())
+  return axios.post('/api/courses/', formdata, headers())
 }
 
+export function getSingleCourse(courseId) {
+  return axios.get(`/api/courses/${courseId}`)
+}
+
+export function getSingleLesson(lessonId) {
+  return axios.get(`/api/courses/1/lessons/1`)
+}
 
 // * Auth Requests
 

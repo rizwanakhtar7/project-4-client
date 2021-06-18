@@ -7,10 +7,11 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  font-family: 'open sans', sans-serif;
-  font-size: 1rem;
 }
 
+
+
+/* CSS to crop description on course cards to 3 lines */
 .line-clamp {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -26,28 +27,30 @@ body {
 
 
 .individual-course-container {
-  border-radius: 0.75rem;
   margin: .5rem;
   padding: 1rem;
   height: auto;
   font-size: 13px;
-  background: white;
-  color: black;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-  max-width: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  flex: 0 31%;
+  cursor: pointer;
 }
 
-.container-for-courses {
-  max-width: 100%;  
-  justify-content: center;
-  flex-wrap: wrap;
+.course-container {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
 }
 
-img {
+.main-container {
+  max-width: 1035px;
+  margin: 0 auto;
+}
+
+.course-card-images {
   height: 100%;
-  width: 240px;
+  width: 200px;
 }
 
 .navbar {
@@ -67,27 +70,26 @@ img {
 }
 
 .navbar-show-color {
-  background: grey;
-  color: white;
+  background: white;
+  color: black;
 
 }
 
 .navbar-default-color {
-  background: black;
+  background: white;
 }
 
 
 
 /* Side navbar styling */
 .side-nav-menu-container {
-  width: 250px;
-  color:white;
-  background-color: black;
+  width: 350px;
+  color:black;
+  background-color: white;
   height: 100%;
   position: fixed;
   z-index: 2;
   right: -100%;
-  //box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;}
 }
 
 .side-nav-menu-container.active {
@@ -104,12 +106,12 @@ img {
 }
 
 .navbar-item  {
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 17px;
   text-transform: uppercase;
   a:link {
-    color: white;
+    color: black;
   }
 }
 
@@ -125,4 +127,68 @@ img {
 .fa-items-icon {
   margin-right: 9px;
   cursor: pointer;
+}
+
+.star.selected {
+  color: orange;
+}
+
+.star {
+  color: grey;
+}
+
+.hamburger-react {
+  color:#fdb913;
+}
+
+.margin-top-spacer {
+  margin-top: 5vh;
+}
+
+/* HERO SECTION styling */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr; 
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  align-content: center;
+  justify-content: center;
+
+  .image-section {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+  .overlay-section {
+    grid-area: 1 / 1 / 2 / 2;
+  } 
+  .text-section {
+    grid-area: 1 / 1 / 2 / 2;
+
+  }
+}
+
+.hero-img {
+  min-width: 350px;
+  width: 100%;
+  height:75vh;
+  object-fit: cover;
+}
+
+.overlay-section {
+  display: grid;
+  max-width: 100%;
+  background: black;
+  background: linear-gradient(
+    60deg,
+    rgba(0, 0, 0, 0.7777485994397759) 30%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.text-section {
+  display: grid;
+  align-items: center;
+  margin-left: 60px;
+  margin-right: 15px;
+  color:white;
+  width:40%;
 }

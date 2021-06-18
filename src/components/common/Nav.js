@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Hamburger from 'hamburger-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome,faFilm} from '@fortawesome/free-solid-svg-icons'
+import siteLogo from '../../assets/images/site-logo.png'
 
 function Nav(){
   const [showColor, setShowColor] = React.useState(false)
@@ -22,10 +23,10 @@ function Nav(){
   return (
     <>
       <div className={`navbar ${showColor ? 'navbar-show-color' : 'navbar-default-color'}`}>
-      <Link to="/">LOGO HERE</Link>
+        <Link to="/"><img src={siteLogo} alt="Site logo" width="140" /></Link>
 
       <div className="menu-items-end" onClick={handleSideBar}>
-        <Hamburger toggled={sidebarShow} toggle={setSidebarShow} />
+        <Hamburger toggled={sidebarShow} toggle={setSidebarShow} className="test" />
 
       </div>
     </div>

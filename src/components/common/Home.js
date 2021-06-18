@@ -1,8 +1,10 @@
+import Hero from "./Hero"
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { loginUser } from '../../lib/api'
 import { setToken } from '../../lib/auth'
+
 
 function Home(){
   const history = useHistory()
@@ -28,6 +30,8 @@ function Home(){
   console.log('formData', formData)
 
   return (
+    <>
+    <Hero />
     <form onSubmit={handleSubmit}>
       <fieldset>
         <legend>Login</legend>
@@ -38,6 +42,7 @@ function Home(){
         <input type="submit" value="Submit" />
       </fieldset>
     </form>
+    </>
   )
 }
 
