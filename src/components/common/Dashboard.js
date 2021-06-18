@@ -4,7 +4,7 @@ import { getUserData } from '../../lib/api'
 
 function Dashboard() {
   const [userId, setUserId] = React.useState(null)
-  const [userRole, setUserRole] = React.useState(null)
+  const [userData, setUserData] = React.useState(null)
 
 
   React.useEffect(() => {
@@ -12,7 +12,8 @@ function Dashboard() {
       try {
         setUserId(getUserId)
         const res = await getUserData(userId)
-        setUserRole(res.data.role)
+        console.log(res.data)
+        setUserData(res.data)
       } catch (err) {
         console.log(err)
       }
@@ -20,13 +21,13 @@ function Dashboard() {
     getData()
   }, [userId])
 
-  console.log(userId)
-  console.log(userRole)
+  console.log(userData)
 
   return (
     <>
       <h1>Welcome to your Dashboard</h1>
-      {userRole === 'INS' ? <h2>Hi Instructor</h2> : <h2>Hi Learner</h2>}
+      {userData && userData.role === 'INS' ? <h2>Hi Instructor</h2> : <h2>Hi Learner</h2>}
+      <img src={userData && userData.profileImage} alt='profile' />
     </>
   )
 }
