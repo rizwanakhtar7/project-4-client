@@ -5,6 +5,7 @@ import CourseShow from './components/common/Course/CourseShow'
 import Home from './components/common/Home'
 import LessonShow from './components/common/Lesson/LessonShow'
 import Nav from './components/common/Nav'
+import Dashboard from './components/common/Dashboard'
 import Quiz from './components/common/Quiz'
 import Register from './components/auth/Register'
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/courses/:courseId/lessons/:lessonId" component={LessonShow} />
           <Route path="/courses/:courseId" component={CourseShow} />
           <Route path="/courses" component={CourseIndex} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="/quiz" component={Quiz} />
           <Route path="/register" component={Register} />
         </Switch>

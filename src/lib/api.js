@@ -22,6 +22,10 @@ export function getSingleLesson(courseId, lessonId) {
   return axios.get(`/api/courses/${courseId}/lessons/${lessonId}`)
 }
 
+export function getUserData(userId) {
+  return axios.get(`/api/auth/profile/${userId}/`)
+}
+
 // * Auth Requests
 
 export function registerUser(formData) {

@@ -26,7 +26,6 @@ function CourseIndex() {
         const { data } = await axios.get(`/api/courses/`) 
         setCourses(data)
         console.log(data)
-
       } catch(e) {
         console.log(e)
       }
