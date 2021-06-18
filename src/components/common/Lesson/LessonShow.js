@@ -3,7 +3,7 @@ import { useParams } from 'react-router'
 import { getSingleLesson } from '../../../lib/api'
 
 function LessonShow() {
-  const { lessonId } = useParams()
+  const { courseId, lessonId } = useParams()
   const [lesson, setLesson] = React.useState(null)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [scoreShow, setShow] = useState(false)
@@ -26,16 +26,16 @@ function LessonShow() {
   React.useEffect(() => {
     const getSingleLessonData = async () => {
       try {
-        const res = await getSingleLesson(lessonId)
+        const res = await getSingleLesson(courseId, lessonId)
         setLesson(res.data)
       } catch (e) {
         console.log(e)
       }
     }
     getSingleLessonData()
-  }, [lessonId])
+  }, [courseId, lessonId])
 
-
+  console.log(lesson)
 
   lesson && console.log(lesson.assessment)
   return (

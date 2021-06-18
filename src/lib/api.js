@@ -18,8 +18,8 @@ export function getSingleCourse(courseId) {
   return axios.get(`/api/courses/${courseId}`)
 }
 
-export function getSingleLesson(lessonId) {
-  return axios.get(`/api/courses/1/lessons/1`)
+export function getSingleLesson(courseId, lessonId) {
+  return axios.get(`/api/courses/${courseId}/lessons/${lessonId}`)
 }
 
 // * Auth Requests
