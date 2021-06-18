@@ -1,6 +1,6 @@
 import React from 'react'
-const uploadUrl = 'djxh1yrnv'
-const uploadPreset = 'learnupload'
+const uploadUrl = process.env.REACT_APP_CLOUDINARY_URL
+const uploadPreset = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET_IMAGE
 
 function ImageUpload({ onUpload }) {
   const [image, setImage] = React.useState('')
