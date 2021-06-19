@@ -1,6 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
 import { registerUser } from '../../lib/api'
+import ImageUpload from '../common/ImageUpload'
 
 function Register(){
   const history = useHistory()
@@ -8,12 +9,15 @@ function Register(){
   const { formData, handleChange } = useForm({
     fullName: '',
     email: '',
-    profileImage: '',
     username: '',
     role: '',
     password: '',
     passwordConfirmation: '',
   })
+
+  const handleImageUpload = file => {
+    handleChange({ target: { name: 'profileImage', value: file } })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,7 +28,6 @@ function Register(){
     } catch (err) {
       console.log(err.response)
     }
-
   }
 
   console.log('formData', formData)
@@ -39,8 +42,6 @@ function Register(){
       <input type="text" id="fullName" name="fullName" placeholder="Full Name" onChange={handleChange} /><br />
       <label htmlFor="email">Email:</label><br />
       <input type="email" id="email" name="email" placeholder="email@domain.com" onChange={handleChange} /><br />
-      <label htmlFor="profileImage">Profile Image:</label><br />
-      <input type="text" id="profileImage" name="profileImage" placeholder="Profile Image URL" onChange={handleChange}/><br />
       {/* <label>Bio:</label><br />
       <input /><br /> */}
       <label htmlFor="username">Username:</label><br />
@@ -60,6 +61,9 @@ function Register(){
       <input type="password" id="password" name="password" placeholder="password" onChange={handleChange} /><br />
       <label htmlFor="password-confirmation">Password Confirmation:</label><br />
       <input type="password" id="passwordConfirmation" name="passwordConfirmation" placeholder="password confirmation" onChange={handleChange} /><br /><br />
+      <div>
+        <ImageUpload onUpload={handleImageUpload} />
+      </div>
       <input type="submit" value="Submit" />
     </fieldset>
   </form>
