@@ -10,7 +10,7 @@ function Register(){
     fullName: '',
     email: '',
     username: '',
-    role: '',
+    role: 'LRN',
     password: '',
     passwordConfirmation: '',
   })
@@ -26,11 +26,9 @@ function Register(){
       await registerUser(formData)
       history.push('/')
     } catch (err) {
-      console.log(err.response)
+      console.log(err)
     }
   }
-
-  console.log('formData', formData)
 
   return (
     <>
@@ -46,14 +44,8 @@ function Register(){
       <input /><br /> */}
       <label htmlFor="username">Username:</label><br />
       <input type="text" id="username" name="username" placeholder="Username" onChange={handleChange} /><br />
-      {/* <label htmlFor="role">Role:</label><br />
-      <select name="role" onChange={handleChange}>
-        <option value="LRN" selected>Learner</option>
-        <option value="INS">Instructor</option>
-      </select> */}
-
-      <label htmlFor="role">Role:</label><br />
-      <input type="radio" id="learner" name="role" value="LRN" onChange={handleChange} />
+      <label htmlFor="role">Account Type:</label><br />
+      <input type="radio" id="learner" name="role" value="LRN" checked={formData.role === 'LRN'} onChange={handleChange} />
       <label htmlFor="learner">Learner</label><br />
       <input type="radio" id="instructor" name="role" value="INS" onChange={handleChange} />
       <label htmlFor="instructor">Instructor</label><br />
