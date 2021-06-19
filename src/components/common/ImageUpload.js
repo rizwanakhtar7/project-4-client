@@ -28,7 +28,7 @@ function ImageUpload({ onUpload }) {
   return (
     <>
       {image && <img src={image} alt="uploaded profile" />}
-      {!image && <button onClick={handleUpload} type="button">Upload Image</button>}
+      {!image && <button className="button" onClick={handleUpload} type="button">Upload Image</button>}
       {/* <button onClick={handleUpload} type="button" className="button is-fullwidth is-primary">{!image ? 'Select Image' : 'Select Another Image'}</button> */}
     </>
   )
