@@ -41,7 +41,7 @@ function CourseCard({ id, name, courseImage, subject, description, lessons,feedb
         <Link to ={`/courses/${id}`}><h3>Lessons</h3></Link>
 
         <h4>
-        {lessons.slice(0,3).map(lesson => (
+        {lessons && lessons.slice(0,3).map(lesson => (
             <li key={lesson._id}>{lesson.title}</li>
         ))}
         </h4>

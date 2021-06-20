@@ -3,12 +3,12 @@ import heroImg from '../../assets/images/hero-image.jpg'
 function Hero() {
   return (
     <>
-    <section class="hero-section">
-      <div class="image-section">
+    <section className="hero-section">
+      <div className="image-section">
       <img src={heroImg} alt="hero" className="hero-img" />
       </div>
-      <div class="overlay-section"></div>
-      <div class="text-section">
+      <div className="overlay-section"></div>
+      <div className="text-section">
           <p>  Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
           Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer 
           took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, 

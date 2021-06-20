@@ -61,7 +61,7 @@ function LessonShow() {
   React.useEffect(() => {
     const getSingleLessonData = async () => {
       try {
-        const res = await getSingleLesson(courseId,lessonId)
+        const res = await getSingleLesson(courseId, lessonId)
         setLesson(res.data)
       } catch (e) {
         console.log(e)

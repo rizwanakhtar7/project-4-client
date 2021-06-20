@@ -50,6 +50,7 @@ function Register(){
         <option value="LRN" selected>Learner</option>
         <option value="INS">Instructor</option>
       </select> */}
+
       <label htmlFor="role">Role:</label><br />
       <input type="radio" id="learner" name="role" value="LRN" onChange={handleChange} />
       <label htmlFor="learner">Learner</label><br />

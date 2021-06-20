@@ -34,6 +34,7 @@ function Nav(){
       <ul className="navbar-content-container" onClick={handleSideBar}>
         <li><Link to="/" className="navbar-item" ><FontAwesomeIcon className="fa-items-icon" icon={faHome} />Home</Link></li>
         <li><Link to="/courses" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faFilm} />Courses</Link></li>
+        <li><Link to="/dashboard" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faFilm} />Dashboard</Link></li>
         <li><Link to="/register" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faFilm} />Register</Link></li>
       </ul>
       
