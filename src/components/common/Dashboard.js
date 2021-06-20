@@ -26,8 +26,24 @@ function Dashboard() {
   return (
     <>
       <h1>Welcome to your Dashboard</h1>
-      {userData && userData.role === 'INS' ? <h2>Hi Instructor</h2> : <h2>Hi Learner</h2>}
+      {userData && userData.role === 'INS' ? (
+        <h2>Hi Instructor</h2> 
+        
+      )
+      : 
+      (
+      <h2>Hi {userData?.username}</h2>
+      
+      )}
       <img src={userData && userData.profileImage} alt='profile' />
+      <p>My Favourite Courses</p>
+      {userData?.favorites.map(favorite => (
+        <>
+          <li>{favorite.title}</li>
+         
+        </>
+      ))}
+
     </>
   )
 }
