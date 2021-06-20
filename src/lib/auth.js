@@ -10,6 +10,12 @@ export function getUserId() {
   return getPayload().sub
 }
 
+
+export function removeToken() {
+  window.localStorage.removeItem('token')
+}
+
+
 function getPayload() {
   const token = getToken()
   if (!token) return false
