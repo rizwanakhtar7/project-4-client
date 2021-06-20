@@ -21,18 +21,18 @@ function CourseIndex() {
   }
 
   //TESTING AVERAGE STAR RATING 
-  React.useEffect(() => {
-    const getUserRatings = async () => {
-      try {
-        const res = await axios.get(`/api/courses/2/ratings/`)
-        setAverageStars(res.data)
-        console.log(res)
-      } catch (e) {
-        console.log(e)
-      }
-    }
-    getUserRatings()
-  },[])
+  // React.useEffect(() => {
+  //   const getUserRatings = async () => {
+  //     try {
+  //       const res = await axios.get(`/api/courses/2/ratings/`)
+  //       setAverageStars(res.data)
+  //       console.log(res)
+  //     } catch (e) {
+  //       console.log(e)
+  //     }
+  //   }
+  //   getUserRatings()
+  // },[])
 
 
   React.useEffect(() => {
