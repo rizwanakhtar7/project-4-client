@@ -27,8 +27,6 @@ function Home(){
 
   }
 
-  console.log('formData', formData)
-
   return (
     <>
     <Hero />
