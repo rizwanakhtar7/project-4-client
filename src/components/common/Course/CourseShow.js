@@ -24,14 +24,11 @@ function CourseShow() {
 
   return (
     <>
-   
         <h4>
           {course && course.lessons.map(lesson => <LessonCard key={lesson.id} {...lesson} /> )}
         </h4>
   
     </>
-   
-   
   )
 }
 

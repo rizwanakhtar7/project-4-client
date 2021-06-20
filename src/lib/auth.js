@@ -18,9 +18,9 @@ function getPayload() {
   return JSON.parse(atob(parts[1]))
 }
 
-// export function isAuthenticated() {
-//   const payload = getPayload()
-//   if (!payload) return false
-//   const now = Math.round(Date.now() / 1000)
-//   return now < payload.exp
-// }
+export function isAuthenticated() {
+  const payload = getPayload()
+  if (!payload) return false
+  const now = Math.round(Date.now() / 1000)
+  return now < payload.exp
+}

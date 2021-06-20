@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { isAuthenticated } from '../../../lib/auth'
 // import Star from './Star'
 // import ReactStars from 'react-rating-stars-component'
 
@@ -24,6 +25,8 @@ function CourseCard({ id, name, courseImage, subject, description, lessons,feedb
   // console.log(`ratings: ${ratingValue} for ${id} course`)
   // console.log(`Average: ${ratingValue}`)
 
+  const isLoggedIn = isAuthenticated()
+
   return (
     <>
 
@@ -38,8 +41,10 @@ function CourseCard({ id, name, courseImage, subject, description, lessons,feedb
         <div className="overflow-text line-clamp">
           {description}
         </div>
-        <Link to ={`/courses/${id}`}><h3>Lessons</h3></Link>
-
+        {!isLoggedIn ? 
+          <Link to ={`/`}><h3>Lessons</h3></Link>
+          :
+          <Link to ={`/courses/${id}`}><h3>Lessons</h3></Link>}
         <h4>
         {lessons && lessons.slice(0,3).map(lesson => (
             <li key={lesson._id}>{lesson.title}</li>
