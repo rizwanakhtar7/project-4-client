@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { getSingleCourse } from '../../../lib/api'
 
 function LessonCard({ id, title }) {
-  const { courseId } = useParams()
+  const { courseId,lessonId } = useParams()
   const [course, setCourse] = React.useState(null)
 
   React.useEffect(() => {
@@ -17,7 +17,7 @@ function LessonCard({ id, title }) {
       }
     }
     getSingleCourseData()
-  }, [courseId])
+  }, [courseId,lessonId])
 
   course && console.log(course.lessons)
 
@@ -29,10 +29,10 @@ function LessonCard({ id, title }) {
           {course && course.lessons.map(lesson => (
             <>
 
-                <div key={id}>
+                <div key={lesson.id}>
                     <h3>{title}</h3>
                     <p>LESSON DETAIL </p>
-                    <Link to={`/lessons/${id}`} ><h3>View Lesson</h3></Link>
+                    <Link to={`/courses/${courseId}/lessons/${lesson.id}`} ><h3>View Lesson</h3></Link>
 
                 </div>
                 <hr />

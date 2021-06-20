@@ -6,18 +6,33 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 function CourseIndex() {
   const [courses, setCourses] = React.useState([])
-  
+  const [averageStars, setAverageStars] = React.useState([])
+
 
   const handleSearch = async (e) => {
     try {
       const { data } = await axios.get(`/api/courses/?search=${e.target.value}`) 
       setCourses(data)
-      console.log(data)
+      // console.log(data)
 
     } catch(e) {
       console.log(e)
     }
   }
+
+  //TESTING AVERAGE STAR RATING 
+  React.useEffect(() => {
+    const getUserRatings = async () => {
+      try {
+        const res = await axios.get(`/api/courses/2/ratings/`)
+        setAverageStars(res.data)
+        console.log(res)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+    getUserRatings()
+  },[])
 
 
   React.useEffect(() => {
@@ -25,7 +40,7 @@ function CourseIndex() {
       try {
         const { data } = await axios.get(`/api/courses/`) 
         setCourses(data)
-        console.log(data)
+        // console.log(data)
 
       } catch(e) {
         console.log(e)

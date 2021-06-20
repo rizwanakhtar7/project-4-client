@@ -16,9 +16,9 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/courses/:courseId/lessons/:lessonId" component={LessonShow} />
           <Route path="/courses/:courseId" component={CourseShow} />
           <Route path="/courses" component={CourseIndex} />
-          <Route path="/lessons/1" component={LessonShow} />
           <Route path="/quiz" component={Quiz} />
           <Route path="/register" component={Register} />
         </Switch>
