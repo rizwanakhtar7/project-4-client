@@ -10,11 +10,9 @@ export function getUserId() {
   return getPayload().sub
 }
 
-
 export function removeToken() {
   window.localStorage.removeItem('token')
 }
-
 
 function getPayload() {
   const token = getToken()
@@ -29,4 +27,10 @@ export function isAuthenticated() {
   if (!payload) return false
   const now = Math.round(Date.now() / 1000)
   return now < payload.exp
+}
+
+export function isOwner(userId) {
+  const payload = getPayload()
+  if (!payload) return false
+  return userId === payload.sub
 }
