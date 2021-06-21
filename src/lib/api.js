@@ -10,6 +10,14 @@ function headers() {
 
 // * Learn Requests
 
+export function deleteLesson(courseId, lessonId) {
+  return axios.delete(`/api/courses/${courseId}/lessons/${lessonId}/`, headers())
+}
+
+export function createLesson(courseId, formData) {
+  return axios.post(`/api/courses/${courseId}/lessons/`, formData, headers())
+}
+
 export function createCourse(formData) {
   return axios.post('/api/courses/', formData, headers())
 }

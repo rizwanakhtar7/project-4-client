@@ -1,12 +1,15 @@
 import React from 'react'
 
-import { useParams } from 'react-router-dom'
-import { getSingleCourse } from '../../../lib/api'
+import { useParams, useHistory } from 'react-router-dom'
+import { createLesson, getSingleCourse } from '../../../lib/api'
 import LessonCard from '../Lesson/LessonCard'
+import { useForm } from '../../../hooks/useForm'
+import ImageUpload from '../ImageUpload'
 
 function CourseShow() {
   const { courseId } = useParams()
   const [course, setCourse] = React.useState(null)
+  const history = useHistory()
 
   React.useEffect(() => {
     const getSingleCourseData = async () => {
@@ -22,12 +25,55 @@ function CourseShow() {
 
   course && console.log(course.lessons)
 
+  const { formData, handleChange } = useForm({
+    title: '',
+    description: '',
+    content: '',
+    videoLink: '',
+  })
+
+  const handleImageUpload = file => {
+    handleChange({ target: { name: 'fileUpload', value: file } })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      alert(`Submitting ${JSON.stringify(formData, null, 2)}`)
+      await createLesson(courseId, formData)
+      history.push('/')
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
+
   return (
     <>
         <h4>
           {course && course.lessons.map(lesson => <LessonCard key={lesson.id} {...lesson} /> )}
         </h4>
-  
+        <h4>Create a New Lesson for Course: {courseId}</h4>
+
+        <div className="container">
+          <form className="container" onSubmit={handleSubmit}>
+            <label htmlFor="full">Lesson Title:</label><br />
+            <input type="text" id="title" name="title" placeholder="Lesson Title" onChange={handleChange} /><br />
+            <label htmlFor="description">Description:</label><br />
+            <input type="text" id="description" name="description" placeholder="Lesson Description" onChange={handleChange} /><br />
+            <label htmlFor="username">Content:</label><br />
+            <textarea id="content" name="content" placeholder="Lesson Content" onChange={handleChange} /><br />
+            <label htmlFor="role">Image Upload:</label><br />
+            <div>
+              <ImageUpload onUpload={handleImageUpload} />
+            </div>
+            <br />
+            <label htmlFor="videoLink">Lesson Video Link:</label><br />
+            <input type="text" id="videoLink" name="videoLink" placeholder="Lesson Video Link" onChange={handleChange} /><br />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
     </>
   )
 }
