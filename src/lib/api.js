@@ -14,6 +14,10 @@ export function createCourse(formData) {
   return axios.post('/api/courses/', formData, headers())
 }
 
+export function deleteCourse(courseId) {
+  return axios.delete(`api/courses/${courseId}`, headers())
+}
+
 export function getSingleCourse(courseId) {
   return axios.get(`/api/courses/${courseId}`, headers())
 }

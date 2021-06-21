@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { isAuthenticated } from '../../../lib/auth'
+import React from 'react'
+import { Link, useHistory } from 'react-router-dom'
+import { isAuthenticated, isOwner } from '../../../lib/auth'
+import { deleteCourse } from '../../../lib/api'
 // import Star from './Star'
 // import ReactStars from 'react-rating-stars-component'
 
@@ -8,7 +9,7 @@ import { isAuthenticated } from '../../../lib/auth'
 
 
 
-function CourseCard({ id, name, courseImage, subject, description, lessons,feedback, totalStars = 5  }) {
+function CourseCard({ id, name, courseImage, subject, description, lessons,feedback, totalStars = 5, owner  }) {
   // const [starsSelected, setStarsSelected] = useState(0)
   // const [ratingValue, setRatingValue] = useState(
   //   feedback?.map(rating => rating.rating)
@@ -27,6 +28,13 @@ function CourseCard({ id, name, courseImage, subject, description, lessons,feedb
 
   const isLoggedIn = isAuthenticated()
   
+
+  const history = useHistory()
+
+  const handleDelete = async () => {
+    await deleteCourse(id)
+    history.go(0)
+  }
 
   return (
     <>
@@ -51,7 +59,16 @@ function CourseCard({ id, name, courseImage, subject, description, lessons,feedb
             <li key={lesson._id}>{lesson.title}</li>
         ))}
         </h4>
-
+        {isOwner(owner.id) && (
+          <button onClick={handleDelete}>
+            Delete this Course
+          </button>
+        )}
+        {/* <h4>{`Course ID: ${id}`}</h4>
+        <h4>{`Owner ID: ${owner.id}`}</h4>
+        <button onClick={handleDelete}>
+          Delete this Course
+        </button> */}
         <button>Register to unlock all lessons!</button>
         {/* <h1>AVERAGE:{averageRatingForCourse}</h1> */}
       </div>
