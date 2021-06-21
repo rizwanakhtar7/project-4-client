@@ -19,7 +19,7 @@ function LessonCard({ id, title }) {
     getSingleCourseData()
   }, [courseId,lessonId])
 
-  course && console.log(course.lessons)
+  course && console.log(course)
 
   return (
     <>

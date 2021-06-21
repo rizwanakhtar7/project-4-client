@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { isAuthenticated, isOwner } from '../../../lib/auth'
 import { deleteCourse } from '../../../lib/api'
 // import Star from './Star'
-// import ReactStars from 'react-rating-stars-component'
+import ReactStars from 'react-rating-stars-component'
 
 // const createArrayOfStars = length => [...Array(length)]
 
@@ -11,15 +11,15 @@ import { deleteCourse } from '../../../lib/api'
 
 function CourseCard({ id, name, courseImage, subject, description, lessons,feedback, totalStars = 5, owner  }) {
   // const [starsSelected, setStarsSelected] = useState(0)
-  // const [ratingValue, setRatingValue] = useState(
-  //   feedback?.map(rating => rating.rating)
-  // )
+  const [ratingValue, setRatingValue] = React.useState(
+    feedback?.map(rating => rating.rating)
+  )
   
-  // // 8 3 
-  // const SumOfRatingsForCourse = ratingValue.reduce((totalRating, currentRating) => totalRating + parseInt(currentRating), 0) 
-  // const feedbackRatingArrLength = ratingValue.length === 0 ? 1 : ratingValue.length
-  // const averageRatingForCourse = Math.round((SumOfRatingsForCourse / feedbackRatingArrLength) * 2) / 2
-  // console.log(`average for this course: ${averageRatingForCourse}`)
+  // 8 3 
+  const SumOfRatingsForCourse = ratingValue.reduce((totalRating, currentRating) => totalRating + parseInt(currentRating), 0) 
+  const feedbackRatingArrLength = ratingValue.length === 0 ? 1 : ratingValue.length
+  const averageRatingForCourse = Math.round((SumOfRatingsForCourse / feedbackRatingArrLength) * 2) / 2
+  console.log(`average for this course: ${averageRatingForCourse}`)
   
   // console.log(feedback?.map(rating => rating.rating))
   // console.log(`feedback ${feedback}`)
@@ -40,13 +40,14 @@ function CourseCard({ id, name, courseImage, subject, description, lessons,feedb
     <>
 
       <div className="individual-course-container" key={id}>
-        <h2>{name}</h2>
-        <h3>Course Rating : </h3>
-        {/* <ReactStars count={5} value={averageRatingForCourse} size={28} isHalf={true} edit={false} onChange={averageRatingForCourse}/> */}
-        {/* {createArrayOfStars(totalStars).map((eachStar, i) => (<Star key={eachStar} selected={averageRatingForCourse > i} onSelect={() => setStarsSelected(i + 1)} />))} / 5.0 */}
         <figure>
           <img className="course-card-images" src={courseImage} alt={name}/>
         </figure>
+        <h2>{name}</h2>
+        <h3>Course Rating : </h3>
+        <ReactStars count={5} value={averageRatingForCourse} size={20} isHalf={true} edit={false} onChange={averageRatingForCourse}/>
+        {/* {createArrayOfStars(totalStars).map((eachStar, i) => (<Star key={eachStar} selected={averageRatingForCourse > i} onSelect={() => setStarsSelected(i + 1)} />))} / 5.0 */}
+       
         <div className="overflow-text line-clamp">
           {description}
         </div>
@@ -69,7 +70,7 @@ function CourseCard({ id, name, courseImage, subject, description, lessons,feedb
         <button onClick={handleDelete}>
           Delete this Course
         </button> */}
-        <button>Register to unlock all lessons!</button>
+        {!isLoggedIn && <button>Register to unlock all lessons!</button> }
         {/* <h1>AVERAGE:{averageRatingForCourse}</h1> */}
       </div>
 

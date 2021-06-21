@@ -6,6 +6,14 @@ function Dashboard() {
   const [userId, setUserId] = React.useState(null)
   const [userData, setUserData] = React.useState(null)
 
+  //Quotes of the day!
+  const quotes = [
+    [{ quotedBy: 'Albert Einstein', quote: '“Wisdom is not a product of schooling but of the lifelong attempt to acquire it.”' }],
+    [{ quotedBy: 'Anthony J. D’Angelo', quote: '“Develop a passion for learning. If you do, you will never cease to grow.”' }],
+    [{ quotedBy: 'Jim Lovell', quote: '“You don’t understand anything until you learn it more than one way.”' }]
+  ]
+
+  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
 
   React.useEffect(() => {
     const getData = async () => {
@@ -36,6 +44,21 @@ function Dashboard() {
       
       )}
       <img src={userData && userData.profileImage} alt='profile' />
+      <h1>Quote of the Day</h1>
+      {randomQuote.map(quoteDetails => {
+          return (
+            <>
+              <div key={quoteDetails.quotedBy}>
+                <figure className="quote-container">
+                  <blockquote>
+                    <p className="quote">{quoteDetails.quote}</p>
+                    <p className="quote quote-caption"> &mdash;{quoteDetails.quotedBy}, <cite>{quoteDetails.quotedBy}</cite></p>
+                  </blockquote>
+                </figure>
+              </div>
+            </>
+          )
+        })}
       <p>My Favourite Courses</p>
       {/* {userData && userData.favorites.map(favorite => (
         <>

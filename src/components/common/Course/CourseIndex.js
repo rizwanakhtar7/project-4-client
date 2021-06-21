@@ -6,14 +6,18 @@ import { faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons'
 import { isAuthenticated } from '../../../lib/auth'
 import { Link } from 'react-router-dom'
 import { createCourse } from '../../../lib/api'
+import Spinner from '../Spinner'
+import Error from '../Error'
 
 function CourseIndex() {
-  const [courses, setCourses] = React.useState([])
+  const [courses, setCourses] = React.useState(null)
+  const [isError, setIsError] = React.useState(false)
   const [averageStars, setAverageStars] = React.useState([])
   const isLoggedIn = isAuthenticated()
   const [selectedSubjects, setSelectedSubjects] = React.useState([])
   const subjects = ['Computing', 'Math', 'Science', 'English']
-  
+  const isLoading = !courses && !isError
+
 
   // Search bar -- Remove if not required
   // const [search, setSearch] = React.useState('')
@@ -34,7 +38,7 @@ function CourseIndex() {
     if (selectedSubjects.includes(e.target.value)) {
       return setSelectedSubjects(selectedSubjects.filter(subject => subject !== e.target.value))
     }
-    setSelectedSubjects([...selectedSubjects, e.target.value]) 
+    setSelectedSubjects([...selectedSubjects, e.target.value])
 
   }
 
@@ -45,11 +49,11 @@ function CourseIndex() {
       return true
     }
     return selectedSubjects.every(selectedSubject => course.subject.includes(selectedSubject))
-    
-  })
-  
 
-  //TESTING AVERAGE STAR RATING 
+  })
+
+
+  // TESTING AVERAGE STAR RATING 
   // React.useEffect(() => {
   //   const getUserRatings = async () => {
   //     try {
@@ -62,22 +66,19 @@ function CourseIndex() {
   //   }
   //   getUserRatings()
   // },[])
-  // console.log(courses.subject.map(subject => subject))
 
   React.useEffect(() => {
     const getData = async (e) => {
       try {
-        const { data } = await axios.get(`/api/courses/`) 
+        const { data } = await axios.get(`/api/courses/`)
         setCourses(data)
-      } catch(e) {
-        console.log(e)
+      } catch (err) {
+        setIsError(true)
       }
-     
-    }
-    getData()
-  },[])
 
-  console.log(courses.name)
+    }
+    setTimeout(getData, 1300)
+  }, [])
 
   return (
     <>
@@ -89,13 +90,14 @@ function CourseIndex() {
         <input onChange={handleSearch} placeholder="Search.." />
       </div> */}
       <div >
+
         {subjects.map((subject) => (
           <button
-            className="subjects-btn" 
+            className="subjects-btn"
             key={subject}
             value={subject}
             onClick={handleClick}
-            className={`subject-btn ${selectedSubjects.includes(subject)? 'btn-active' : ''}`}
+            className={`subject-btn ${selectedSubjects.includes(subject) ? 'btn-active' : ''}`}
           >
             {subject}
 
@@ -104,9 +106,19 @@ function CourseIndex() {
       </div>
 
       <div className="main-container">
-        <div className="course-container">
-          {filteredResult?.map(course => <CourseCard key={course._id} {...course} /> )}
-        </div>
+        {isError && <Error />}
+        {isLoading && <Spinner />}
+        {courses && (
+          <>
+
+          <div className="course-container">
+
+              {filteredResult.map(course => <CourseCard key={course._id} {...course} />)}
+
+          </div>
+          </>
+        )}
+
         { isLoggedIn && (
         <>
         <Link to ={`/courses/new`} >
@@ -115,12 +127,15 @@ function CourseIndex() {
             <span>Add Courses</span>
           </div>
         </Link>
-         
+        
         </>
+        
         )} 
+
       </div>
-      
-       
+
+
+
     </>
   )
 }
