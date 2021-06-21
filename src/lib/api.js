@@ -10,14 +10,12 @@ function headers() {
 
 // * Learn Requests
 
-export function createCourse(formdata) {
-  return axios.post('/api/courses/', formdata, headers())
+export function createCourse(formData) {
+  return axios.post('/api/courses/', formData, headers())
 }
 
-
-
 export function getSingleCourse(courseId) {
-  return axios.get(`/api/courses/${courseId}`)
+  return axios.get(`/api/courses/${courseId}`, headers())
 }
 
 export function getSingleLesson(courseId, lessonId) {
