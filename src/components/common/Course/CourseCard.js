@@ -26,6 +26,7 @@ function CourseCard({ id, name, courseImage, subject, description, lessons,feedb
   // console.log(`Average: ${ratingValue}`)
 
   const isLoggedIn = isAuthenticated()
+  
 
   return (
     <>
@@ -54,6 +55,9 @@ function CourseCard({ id, name, courseImage, subject, description, lessons,feedb
         <button>Register to unlock all lessons!</button>
         {/* <h1>AVERAGE:{averageRatingForCourse}</h1> */}
       </div>
+
+      
+
     </>
   )
 }

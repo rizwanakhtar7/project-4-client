@@ -37,12 +37,12 @@ function Dashboard() {
       )}
       <img src={userData && userData.profileImage} alt='profile' />
       <p>My Favourite Courses</p>
-      {userData?.favorites.map(favorite => (
+      {/* {userData && userData.favorites.map(favorite => (
         <>
           <li>{favorite.title}</li>
          
         </>
-      ))}
+      ))} */}
 
     </>
   )
