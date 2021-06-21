@@ -84,10 +84,10 @@ function CourseIndex() {
       <div className="margin-top-spacer">
 
       </div>
-      <div>
+      {/* <div>
         <FontAwesomeIcon icon={faSearch} />
         <input onChange={handleSearch} placeholder="Search.." />
-      </div>
+      </div> */}
       <div >
         {subjects.map((subject) => (
           <button
