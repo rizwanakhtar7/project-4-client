@@ -81,14 +81,14 @@ function CourseIndex() {
 
   return (
     <>
-      <div className="margin-top-spacer">
+      {/* <div className="margin-top-spacer">
 
-      </div>
+      </div> */}
       {/* <div>
         <FontAwesomeIcon icon={faSearch} />
         <input onChange={handleSearch} placeholder="Search.." />
       </div> */}
-      <div >
+      {/* <div >
         {subjects.map((subject) => (
           <button
             className="subjects-btn" 
@@ -101,26 +101,21 @@ function CourseIndex() {
 
           </button>
         ))}
-      </div>
+      </div> */}
 
       <div className="main-container">
         <div className="course-container">
-          {filteredResult?.map(course => <CourseCard key={course._id} {...course} /> )}
+          {filteredResult && filteredResult.map(course => <CourseCard key={course._id} {...course} /> )}
         </div>
         { isLoggedIn && (
-        <>
-        <Link to ={`/courses/new`} >
-          <div className="add-course-section">
-            <FontAwesomeIcon className="fa-items-plusicon" icon={faPlusCircle} /> 
-            <span>Add Courses</span>
-          </div>
-        </Link>
-         
-        </>
+          <Link to ={`/courses/new`} >
+            <div className="add-course-section">
+              <FontAwesomeIcon className="fa-items-plusicon" icon={faPlusCircle} /> 
+              <span>Add Courses</span>
+            </div>
+          </Link>
         )} 
       </div>
-      
-       
     </>
   )
 }
