@@ -251,3 +251,23 @@ form input {
   justify-content: center;
   text-transform: uppercase;
 }
+
+.subjects-btn {
+  margin-right: 2px;
+}
+
+
+.subject-btn {
+  background-color: white;
+  padding:4px;
+  color:orange;
+  font-size: 20px;
+  border: 1px solid orange;
+  margin-bottom: 30px;
+  margin-left: 15px;
+}
+
+.btn-active {
+  background-color: orange;
+  color:white;
+}
