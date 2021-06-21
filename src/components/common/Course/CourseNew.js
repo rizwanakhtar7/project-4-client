@@ -1,15 +1,20 @@
 import { createCourse } from '../../../lib/api'
 import { useForm } from '../../../hooks/useForm'
 
+import ImageUpload from '../ImageUpload'
+
 function CourseNew() {
 
   const { formData, handleChange } = useForm({
     title: '',
     description: '',
-    courseImage: '',
     name: '',
     subject: '',
   })
+
+  const handleImageUpload = file => {
+    handleChange({ target: { name: 'courseImage', value: file } })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -34,7 +39,10 @@ function CourseNew() {
           <input type="text" id="description" name="description" placeholder="Course Description" value={formData.description} onChange={handleChange} /><br />
           
           <label htmlFor="courseImage">Course Image:</label><br />
-          <input type="text" id="courseImage" name="courseImage" placeholder="Course Image" value={formData.courseImage} onChange={handleChange} /><br />
+          <div>
+            <ImageUpload onUpload={handleImageUpload} />
+          </div>
+          <br />
 
           <label htmlFor="name">Course Name:</label><br />
           <input type="text" id="name" name="name" placeholder="Course Name" value={formData.courseName} onChange={handleChange} /><br />
