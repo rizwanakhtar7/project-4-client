@@ -6,7 +6,7 @@ import ImageUpload from '../common/ImageUpload'
 function Register(){
   const history = useHistory()
   // useForm returns an object. Destructure with an object
-  const { formData, handleChange } = useForm({
+  const { formData, handleChange, formErrors, setFormErrors } = useForm({
     fullName: '',
     email: '',
     username: '',
@@ -27,6 +27,7 @@ function Register(){
       history.push('/')
     } catch (err) {
       console.log(err)
+      setFormErrors(err.response.data)
     }
   }
 
@@ -36,13 +37,17 @@ function Register(){
     <div className="container">
       <form className="container" onSubmit={handleSubmit}>
         <label htmlFor="fullName">Full Name:</label><br />
-        <input type="text" id="fullName" name="fullName" placeholder="Full Name" onChange={handleChange} /><br />
+        <input type="text" id="fullName" name="fullName" placeholder="Full Name" onChange={handleChange} />
+        {formErrors.fullName && <small>Full Name is Required</small>}<br />
+        
         <label htmlFor="email">Email:</label><br />
-        <input type="email" id="email" name="email" placeholder="email@domain.com" onChange={handleChange} /><br />
-        {/* <label>Bio:</label><br />
-        <input /><br /> */}
+        <input type="email" id="email" name="email" placeholder="email@domain.com" onChange={handleChange} />
+        {formErrors.email && <small>Email is Required</small>}<br />
+
         <label htmlFor="username">Username:</label><br />
-        <input type="text" id="username" name="username" placeholder="Username" onChange={handleChange} /><br />
+        <input type="text" id="username" name="username" placeholder="Username" onChange={handleChange} />
+        {formErrors.username && <small>Userame is Required</small>}<br />
+
         <label htmlFor="role">Account Type:</label><br />
         <div className="account-elements">
           <label htmlFor="learner">Learner</label><br />
@@ -51,14 +56,21 @@ function Register(){
           <input type="radio" id="instructor" name="role" value="INS" onChange={handleChange} />
         </div>
         <br />
+
         <label htmlFor="password">Password:</label><br />
-        <input type="password" id="password" name="password" placeholder="password" onChange={handleChange} /><br />
+        <input type="password" id="password" name="password" placeholder="password" onChange={handleChange} />
+        {formErrors.password && <small>Password is Required</small>}<br />
+
         <label htmlFor="password-confirmation">Password Confirmation:</label><br />
-        <input type="password" id="passwordConfirmation" name="passwordConfirmation" placeholder="password confirmation" onChange={handleChange} /><br /><br />
+        <input type="password" id="passwordConfirmation" name="passwordConfirmation" placeholder="password confirmation" onChange={handleChange} />
+        {formErrors.passwordConfirmation && <small>Password Confirmation is Required</small>}<br />
+        
         <div>
           <ImageUpload onUpload={handleImageUpload} />
         </div>
-        <br />
+        {formErrors.profileImage && <small>Profile Image is Required</small>}<br />
+        <br /><br />
+
         <input type="submit" value="Submit" />
       </form>
     </div>
