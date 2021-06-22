@@ -20,7 +20,6 @@ function CourseNew() {
     e.preventDefault()
 
     try {
-      alert(`Submitting ${JSON.stringify(formData, null, 2)}`)
       await createCourse(formData)
     } catch (err) {
       console.log(err)
@@ -54,7 +53,7 @@ function CourseNew() {
 
           <label htmlFor="subject">Course Subject:</label><br />
           <input type="text" id="subject" name="subject" placeholder="Course Subject" value={formData.courseSubject} onChange={handleChange} />
-          {formErrors.subject && <small>Course Subject is Required</small>}<br />
+          {formErrors.subject && <small>Course Subject is Required</small>}<br /><br />
 
           <input type="submit" value="Submit" />
         </form>

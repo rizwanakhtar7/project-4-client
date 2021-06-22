@@ -45,15 +45,14 @@ function Nav() {
         <li><Link to="/" className="navbar-item" ><FontAwesomeIcon className="fa-items-icon" icon={faHome} />Home</Link></li>
         <li><Link to="/courses" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faFilm} />Courses</Link></li>
         <li><Link to="/courses/new" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faFilm} />New Course</Link></li>
-        <li><Link to="/dashboard" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faSignOutAlt} />Dashboard</Link></li>
         <li><Link to="/upload" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faFileUpload} />Upload</Link></li>
-
         {!isLoggedIn ?
           <> 
             <li><Link to="/register" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faRegistered} />Register</Link></li>
           </>
           :
           <>
+            <li><Link to="/dashboard" className="navbar-item"><FontAwesomeIcon className="fa-items-icon" icon={faSignOutAlt} />Dashboard</Link></li>
             <li className="navbar-item logout-link" onClick={handleLogout}><FontAwesomeIcon className="fa-items-icon" icon={faSignOutAlt} />Log out</li>
           </>
         }
