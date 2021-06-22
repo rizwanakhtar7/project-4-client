@@ -118,21 +118,22 @@ function CourseIndex() {
           {filteredResult.map(course => <CourseCard key={course._id} {...course} />)}
 
         </div>
-      </>
+      {isLoggedIn && (
+        <>
+          <Link to={`/courses/new`} >
+            <div className="add-course-section">
+              <FontAwesomeIcon className="fa-items-plusicon" icon={faPlusCircle} />
+              <span>Add Courses</span>
+            </div>
+          </Link>
+  
+        </>
+  
+      )}
+        </>
+
     )}
 
-    {isLoggedIn && (
-      <>
-        <Link to={`/courses/new`} >
-          <div className="add-course-section">
-            <FontAwesomeIcon className="fa-items-plusicon" icon={faPlusCircle} />
-            <span>Add Courses</span>
-          </div>
-        </Link>
-
-      </>
-
-    )}
 
   </div>
   </>

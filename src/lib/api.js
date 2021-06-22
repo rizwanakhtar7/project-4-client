@@ -50,11 +50,11 @@ export function loginUser(formData) {
 
 
 export function addNewComment(id, formData) {
-  return axios.post(`api/courses/${id}/comments/`, formData, headers())
+  return axios.post(`/api/courses/${id}/comments/`, formData, headers())
 }
 
 export function deleteComment(id, commentId) {
-  return axios.delete(`api/courses/${id}/comments/${commentId}`,  headers())
+  return axios.delete(`/api/courses/${id}/comments/${commentId}`,  headers())
 }
 
 

@@ -23,7 +23,6 @@ function CourseShow() {
     getSingleCourseData()
   }, [courseId])
 
-  course && console.log(course.lessons)
 
   const { formData, handleChange } = useForm({
     title: '',
@@ -51,6 +50,8 @@ function CourseShow() {
 
   return (
     <>
+        <h1>Lessons on this Course:</h1>
+
         <h4>
           {course && course.lessons.map(lesson => <LessonCard key={lesson.id} {...lesson} /> )}
         </h4>

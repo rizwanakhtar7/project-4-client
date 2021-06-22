@@ -4,8 +4,12 @@ import parse from 'html-react-parser';
 import Error from '../Error';
 import Spinner from '../Spinner';
 import { addNewComment, getSingleLesson, deleteComment, deleteLesson } from '../../../lib/api'
+import CodeMirrorReact from 'react-codemirror'
+import { ReactCodeJar, useCodeJar } from "react-codejar";
+
 
 function LessonShow() {
+  
   const [isError, setIsError] = React.useState(false)
   const { courseId, lessonId } = useParams()
   const [lesson, setLesson] = React.useState(null)
@@ -13,22 +17,43 @@ function LessonShow() {
   const [scoreShow, setShow] = useState(false)
   const [learnerScore, setLearnerScore] = useState(0)
   const isLoading = !lesson && !isError
+  const videoLinkUrl = lesson && lesson.videoLink
+  const highlight = editor => {
+    let code = editor.textContent;
+    code = code.replace(/\((\w+?)(\b)/g, '(<font color="#8a2be2">$1</font>$2');
+    editor.innerHTML = code;
+  };
+  
+const HookExample = () => {
+  const [code, setCode] = useState('(format t "lisp example")');
 
+  const editorRef = useCodeJar({
+    code, // Initial code value
+    onUpdate: setCode, // Update the text
+    highlight, // Highlight function, receive the editor
+    lineNumbers: true // Show line numbers
+  });
+
+  return <div ref={editorRef}></div>;
+};
+  
   //Function to embed youtube watch video to embed plus adding Iframe
   function youtubeEmbed(youtubeUrlLink) {
     const matchPattern = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = youtubeUrlLink.match(matchPattern);
-    return (match && match[2].length === 11)
-      ? match[2]
-      : null;
+    if (match && match[2].length === 11) {
+      return match[2]
+    }
   }
+
+
+  const videoIdYoutube = youtubeEmbed(String(videoLinkUrl));
+  const fullMarkup = parse(`<iframe width="660" height="415" src="https://www.youtube.com/embed/${videoIdYoutube}" <iframe width="560" height="315" src="https://www.youtube.com/embed/w7ejDZ8SWv8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`)
 
   const history = useHistory()
 
   // //make sure video not null
-  // const videoIdYoutube = youtubeEmbed(lesson?.videoLink);
-  // const fullMarkup = parse(`<iframe width="660" height="415" src="https://www.youtube.com/embed/${videoIdYoutube}" <iframe width="560" height="315" src="https://www.youtube.com/embed/w7ejDZ8SWv8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`)
-
+  
   //handle form for comment data
   const [commentFormData, setCommentFormData] = React.useState({
     content: '',
@@ -49,9 +74,11 @@ function LessonShow() {
 
   const handleAddUserComment = async e => {
     e.preventDefault()
+    history.go(0)
 
     try {
       const { data } = await addNewComment(lessonId, commentFormData)
+
       console.log(`data is: ${lessonId}`)
       setCommentFormData({ content: '' })
     } catch (err) {
@@ -91,7 +118,6 @@ function LessonShow() {
   }, [courseId, lessonId])
 
 
-  console.log(lesson?.videoLink)
   return (
     <>
       <div className="main-lesson-container">
@@ -114,10 +140,12 @@ function LessonShow() {
             <div className="video-section">
               {/* embed video from youtube which has been added  */}
               <div className="youtube-vid">
-                {/* {fullMarkup} */}
+                {fullMarkup}
               </div>
               <div className="IDE-section">
-                <iframe src="https://trinket.io/embed/python/f239d4fb1a" width="100%" height="356" frameBorder="0" marginWidth="0" marginHeight="0" allowFullScreen></iframe>
+              {HookExample}
+
+                {/* <iframe src="https://trinket.io/embed/python/f239d4fb1a" width="100%" height="356" frameBorder="0" marginWidth="0" marginHeight="0" allowFullScreen></iframe> */}
 
               </div>
             </div>
@@ -200,7 +228,7 @@ function LessonShow() {
                       </p>
                       <p>{comment.content}</p>
                       <button onClick={() => handleDelete(comment.id)}>DELETE</button>
-
+                     
 
                     </div>
                   )

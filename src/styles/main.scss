@@ -15,6 +15,12 @@ h1 {
   text-align: center;
 }
 
+.hero-title {
+  color:orange;
+  text-transform: capitalize;
+  font-size: 45px;
+  font-weight: bold;
+}
 
 
 /* CSS to crop description on course cards to 3 lines */
@@ -55,8 +61,9 @@ h1 {
 }
 
 .course-card-images {
-  height: 100%;
+  height: 23vh;
   width: 200px;
+  object-fit: contain;
 }
 
 .navbar {
@@ -152,54 +159,96 @@ h1 {
   margin-top: 5vh;
 }
 
-/* HERO SECTION styling */
-.hero-section {
-  display: grid;
-  grid-template-columns: 1fr; 
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  align-content: center;
-  justify-content: center;
+/* ##################### HERO SECTION ##################### */
 
-  .image-section {
-    grid-area: 1 / 1 / 2 / 2;
-  }
-  .overlay-section {
-    grid-area: 1 / 1 / 2 / 2;
-  } 
-  .text-section {
-    grid-area: 1 / 1 / 2 / 2;
 
-  }
-}
-
-.hero-img {
-  min-width: 350px;
-  width: 100%;
-  height:75vh;
-  object-fit: cover;
-}
-
-.overlay-section {
-  display: grid;
-  max-width: 100%;
-  background: black;
-  background: linear-gradient(
-    60deg,
-    rgba(0, 0, 0, 0.7777485994397759) 30%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.text-section {
-  display: grid;
+.hero-image {
+  display: flex;
+  flex-direction: column;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url("../assets/images/hero-image.jpg");
+  min-height: 30em;
+  height: 80%;
+  align-self: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
   align-items: center;
-  margin-left: 60px;
-  margin-right: 15px;
-  color:white;
-  width:40%;
+  justify-content: space-around;
+}
+    
+.hero-header {
+  color: #fdb913;
+  font-size: 40px;
+  text-transform: capitalize;
+  text-align: left;
+  letter-spacing: 1px;
+
 }
 
+.hero-text {
+  display: flex;
+  width: 60%;
+  margin: 0 auto;
+
+}
+
+.welcome-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 4;
+}
+
+.welcome-text > hr {
+  width: 30%;
+  color:black;
+  border: 1px solid #FF8C00;
+  margin-top: -25px;
+  margin-left: 5px;
+}
+
+.welcome-text > p {
+  color:white;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-bottom: 45px;
+}
+
+.login-form {
+  flex: 2;
+
+}
+
+.register-today {
+  background-color: #fdb913;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 21px;
+  font-weight: bold;
+  border: 1px solid #fdb913;
+  letter-spacing: 1px;
+  text-align: center;
+  border-radius: 1px;
+  text-transform: uppercase;
+}
+
+.register-today:hover {
+  color: #fdb913;
+  background-color: white;
+}
+
+//animation
+.animate__animated.animate__fadeInRight {
+  --animate-duration: 3s;
+
+}
+
+.animate__animated.animate__fadeInLeft {
+  --animate-duration: 2s;
+
+}
 /* ##################### FORM STYLING ##################### */
 .button {
   width: 100%;
@@ -273,7 +322,31 @@ form input {
   color:white;
 }
 
+.form-submit-btn {
+  background-color: #3366CC;
+  color: white;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 21px;
+  font-weight: bold;
+  border: 1px solid #3366CC;
+  letter-spacing: 1px;
+  text-align: center;
+  border-radius: 1px;
+  text-transform: uppercase;
+}
 
+.form-submit-btn:hover {
+  background-color: white;
+  color: #3366CC;
+}
+
+.home-page-login > fieldset {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
 
 //spinner class styles on load
 #loading {
@@ -403,4 +476,29 @@ form input {
 // styling for the textarea
 .styled-area {
   outline:none;
+}
+
+
+
+.main-section-home {
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+.why_us {
+  display: flex;
+  justify-content: space-around;
+}
+
+.why_us > div {
+  margin: 1em;
+}
+
+.second-column {
+  flex: 3;
+}
+
+.first-column, .third-column {
+  flex: 2;
 }

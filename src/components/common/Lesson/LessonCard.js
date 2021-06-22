@@ -19,19 +19,15 @@ function LessonCard({ id, title }) {
     getSingleCourseData()
   }, [courseId,lessonId])
 
-  course && console.log(course)
 
   return (
     <>
-      <h1>Lessons on this Course:</h1>
-      {course && course.lessons.map(lesson => (
-        <div key={lesson.id}>
+        <div key={id}>
           <h2>{title}</h2>
           <p>LESSON DETAIL </p>
-          <Link to={`/courses/${courseId}/lessons/${lesson.id}`} ><h3>View Lesson</h3></Link>
+          <Link to={`/courses/${courseId}/lessons/${id}`} ><h3>View Lesson</h3></Link>
           <hr />
         </div>
-      ))}
     </>
   )
 }
