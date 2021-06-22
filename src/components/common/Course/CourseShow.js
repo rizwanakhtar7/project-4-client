@@ -40,7 +40,6 @@ function CourseShow() {
     e.preventDefault()
 
     try {
-      alert(`Submitting ${JSON.stringify(formData, null, 2)}`)
       await createLesson(courseId, formData)
       history.push('/')
     } catch (err) {
