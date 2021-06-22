@@ -61,9 +61,11 @@ function CourseCard({ id, name, courseImage, subject, description, lessons,feedb
         ))}
         </h4>
         {isOwner(owner.id) && (
+          <>
           <button onClick={handleDelete}>
             Delete this Course
           </button>
+          </>
         )}
         {/* <h4>{`Course ID: ${id}`}</h4>
         <h4>{`Owner ID: ${owner.id}`}</h4>

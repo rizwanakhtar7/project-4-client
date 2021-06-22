@@ -81,62 +81,61 @@ function CourseIndex() {
   }, [])
 
   return (
-    <>
-      <div className="margin-top-spacer">
 
-      </div>
+  <>
+  <div className="margin-top-spacer">
+
+  </div>
       {/* <div>
         <FontAwesomeIcon icon={faSearch} />
         <input onChange={handleSearch} placeholder="Search.." />
-      </div> */}
-      <div >
+      </div>  */}
 
-        {subjects.map((subject) => (
-          <button
-            className="subjects-btn"
-            key={subject}
-            value={subject}
-            onClick={handleClick}
-            className={`subject-btn ${selectedSubjects.includes(subject) ? 'btn-active' : ''}`}
-          >
-            {subject}
 
-          </button>
-        ))}
-      </div>
+  <div>
+    {subjects.map((subject) => (
+      <button
+        className="subjects-btn"
+        key={subject}
+        value={subject}
+        onClick={handleClick}
+        className={`subject-btn ${selectedSubjects.includes(subject) ? 'btn-active' : ''}`}
+      >
+        {subject}
 
-      <div className="main-container">
-        {isError && <Error />}
-        {isLoading && <Spinner />}
-        {courses && (
-          <>
+      </button>
+    ))}
+  </div>
 
-          <div className="course-container">
+  <div className="main-container">
+    {isError && <Error />}
+    {isLoading && <Spinner />}
+    {courses && (
+      <>
 
-              {filteredResult.map(course => <CourseCard key={course._id} {...course} />)}
+        <div className="course-container">
 
-          </div>
-          </>
-        )}
+          {filteredResult.map(course => <CourseCard key={course._id} {...course} />)}
 
-        { isLoggedIn && (
-        <>
-        <Link to ={`/courses/new`} >
+        </div>
+      </>
+    )}
+
+    {isLoggedIn && (
+      <>
+        <Link to={`/courses/new`} >
           <div className="add-course-section">
-            <FontAwesomeIcon className="fa-items-plusicon" icon={faPlusCircle} /> 
+            <FontAwesomeIcon className="fa-items-plusicon" icon={faPlusCircle} />
             <span>Add Courses</span>
           </div>
         </Link>
-        
-        </>
-        
-        )} 
 
-      </div>
+      </>
 
+    )}
 
-
-    </>
+  </div>
+  </>
   )
 }
 
