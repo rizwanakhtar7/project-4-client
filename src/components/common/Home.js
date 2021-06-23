@@ -7,8 +7,8 @@ import { setToken } from '../../lib/auth'
 
 function Home() {
   const history = useHistory()
-  // useForm returns an object. Destructure with an object
-  const { formData, handleChange } = useForm({
+ // useForm returns an object. Destructure with an object
+  const { formData, handleChange, formErrors, setFormErrors } = useForm({
     email: '',
     password: '',
   })
@@ -21,7 +21,8 @@ function Home() {
       setToken(res.data.token)
       history.push('/courses')
     } catch (err) {
-      console.log(err)
+      console.log(err.request)
+      setFormErrors(err.request.data)
     }
 
   }
@@ -34,7 +35,7 @@ function Home() {
             <h1 className="hero-header">Welcome to E-Learn</h1>
             <hr /><br />
             <p>On this website you will find resources to help you expand your knowledge across multiple subjects. Register below to gain access to courses taught by experts</p>
-            <Link to="/courses/register">
+            <Link to="/register">
               <button className="register-today">Register Here</button>
             </Link>
           </div>

@@ -271,6 +271,17 @@ form.container {
   width: 800px;
 }
 
+form.container > div > button {
+  color:#3366CC;
+  border:1px solid #3366CC;
+  background-color: white;
+}
+
+.register-button {
+  color:white;
+  background-color: #3366CC;
+}
+
 form label {
   font-weight: bold;
 }
@@ -502,3 +513,63 @@ form input {
 .first-column, .third-column {
   flex: 2;
 }
+
+small {
+  color: red;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 3px;
+}
+
+
+/* ##################### Registration STYLING ##################### */
+
+// form {
+//   font-size: 1.2rem;
+// }
+.form-container span {
+  color: orange;
+}
+
+
+.registration-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.registration-page-container > div {
+  width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+// form.container > div > button {
+//   color:#3366CC;
+//   border:1px solid #3366CC;
+//   background-color: white;
+// }
+
+// .register-button {
+//   color:white;
+//   background-color: #3366CC;
+// }
+
+form label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+form input {
+  height: 40px;
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px 0px;
+
+}
+
+
+/* ##################### END OF Registration STYLING ##################### */
