@@ -7,8 +7,10 @@ import { setToken } from '../../lib/auth'
 
 function Home() {
   const history = useHistory()
+  const [formErrors , setFormErrors] = React.useState(false)
+
  // useForm returns an object. Destructure with an object
-  const { formData, handleChange, formErrors, setFormErrors } = useForm({
+  const { formData, handleChange } = useForm({
     email: '',
     password: '',
   })
@@ -22,10 +24,11 @@ function Home() {
       history.push('/courses')
     } catch (err) {
       console.log(err.request)
-      setFormErrors(err.request.data)
+      setFormErrors(true)
     }
 
   }
+
 
   return (
     <>
@@ -43,11 +46,19 @@ function Home() {
             <form className="home-page-login" onSubmit={handleSubmit}>
               <fieldset>
                 <h2>Login</h2>
+                
                 <label htmlFor="email">Email:</label><br />
                 <input type="email" id="email" name="email" placeholder="email@domain.com" onChange={handleChange} /><br />
                 <label htmlFor="password">Password:</label><br />
                 <input type="password" id="password" name="password" placeholder="password" onChange={handleChange} /><br /><br />
+               
+                {formErrors && (
+                  <p className="form-login-errors">Please check Email or Password!</p>
+                )}
+
                 <input className="form-submit-btn" type="submit" value="Login" />
+              
+
               </fieldset>
             </form>
           </div>

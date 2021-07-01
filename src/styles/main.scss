@@ -216,6 +216,7 @@ h1 {
 
 .login-form {
   flex: 2;
+  height: 500px;
 
 }
 
@@ -571,5 +572,8 @@ form input {
 
 }
 
-
+.form-login-errors {
+  color:red;
+  font-size: 15px;
+}
 /* ##################### END OF Registration STYLING ##################### */
